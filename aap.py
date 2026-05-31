@@ -50,21 +50,20 @@ def add_student():
         email = request.form['email']
         roll = request.form['roll']
         mobile = request.form['mobile']
+
         conn = sqlite3.connect('students.db')
         c = conn.cursor()
 
         c.execute(
-    "SELECT * FROM students WHERE email=? OR roll=?",
-    (email, roll)
-)
+            "SELECT * FROM students WHERE email=? OR roll=?",
+            (email, roll)
+        )
 
-    existing_student = c.fetchone()
+        existing_student = c.fetchone()
 
-    if existing_student:
-        conn.close()
-        return "Email ya Roll No. already registered!"
-
-        
+        if existing_student:
+            conn.close()
+            return "Email ya Roll No. already registered!"
 
         c.execute(
             "INSERT INTO students (name, semester, branch, email, roll, mobile) VALUES (?, ?, ?, ?, ?, ?)",
@@ -75,13 +74,12 @@ def add_student():
         conn.close()
 
         return """
-<h2 style='color:green;text-align:center;'>
-Registration Successful ✅
-</h2>
-"""
+        <h2 style='color:green;text-align:center;'>
+        Registration Successful ✅
+        </h2>
+        """
 
     return render_template('add.html')
-
 # Delete Student
 @app.route('/delete/<int:id>')
 def delete_student(id):
