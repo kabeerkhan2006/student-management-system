@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Admin Dashboard</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+
+<h1>Government Polytechnic College Jhalawar</h1>
+
+<h2>HOD Dashboard</h2>
+<h3>Total Students: {{ total_students }}</h3>
+<a href="/export">
+    <button>Export to Excel</button>
+</a>
+<input type="text" id="searchInput"
+placeholder="Search by Name or Roll No"
+onkeyup="searchStudent()"
+style="padding:10px; width:300px; margin:20px;">
+
+<table>
+
+<tr>
+    <th>Sr. No.</th>
+    <th>Name</th>
+    <th>Semester</th>
+    <th>Branch</th>
+    <th>Email</th>
+    <th>Roll No</th>
+    <th>Mobile</th>
+    <th>Action</th>
+</tr>
+
+{% for student in students %}
+
+<tr>
+
+    <td>{{ loop.index  }}</td>
+    <td>{{ student[1] }}</td>
+    <td>{{ student[2] }}</td>
+    <td>{{ student[3] }}</td>
+    <td>{{ student[4] }}</td>
+    <td>{{ student[5] }}</td>
+    <td>{{ student[6] }}</td>
+    <td>
+    <a href="/edit/{{ student[0] }}">
+        <button>Edit</button>
+    </a>
+
+    <a href="/delete/{{ student[0] }}"
+       onclick="return confirm('Delete this student?')">
+        <button>Delete</button>
+    </a>
+</td>
+
+</tr>
+
+{% endfor %}
+
+</table>
+<script>
+function searchStudent() {
+    let input = document.getElementById("searchInput").value.toLowerCase();
+    let table = document.querySelector("table");
+    let tr = table.getElementsByTagName("tr");
+
+    for (let i = 1; i < tr.length; i++) {
+        let rowText = tr[i].textContent.toLowerCase();
+
+        if (rowText.indexOf(input) > -1) {
+            tr[i].style.display = "";
+        } else {
+            tr[i].style.display = "none";
+        }
+    }
+}
+</script>
+
+</body>
+</html>

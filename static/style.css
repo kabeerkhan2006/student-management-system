@@ -1,0 +1,104 @@
+body{
+    margin:0;
+    padding:0;
+    font-family:Arial;
+    background:#f4f7fc;
+}
+
+.main{
+    text-align:center;
+    margin-top:100px;
+}
+
+.main h1{
+    color:#0d47a1;
+    font-size:40px;
+}
+
+.btn-box{
+    margin-top:40px;
+}
+
+button{
+    padding:12px 25px;
+    border:none;
+    background:#0d47a1;
+    color:white;
+    border-radius:5px;
+    cursor:pointer;
+    margin:10px;
+    font-size:16px;
+}
+
+.form-box{
+    width:400px;
+    background:white;
+    margin:50px auto;
+    padding:30px;
+    border-radius:10px;
+    box-shadow:0px 0px 10px gray;
+}
+
+.form-box h1{
+    text-align:center;
+    color:#0d47a1;
+}
+
+input{
+    width:100%;
+    padding:12px;
+    margin-top:15px;
+    border:1px solid #ccc;
+    border-radius:5px;
+}
+
+.dashboard{
+    text-align:center;
+    margin-top:100px;
+}
+.college-title{
+    text-align: center;
+    color: #0d47a1;
+    font-size: 40px;
+    font-weight: bold;
+    margin-top: 20px;
+}
+table{
+    width:95%;
+    margin:20px auto;
+    border-collapse:collapse;
+    background:white;
+    box-shadow:0 0 10px rgba(0,0,0,0.1);
+}
+
+th{
+    background:#0d47a1;
+    color:white;
+    padding:12px;
+    border:1px solid #ddd;
+}
+
+td{
+    padding:12px;
+    border:1px solid #ddd;
+    text-align:center;
+}
+
+tr:nth-child(even){
+    background:#f2f2f2;
+}
+
+tr:hover{
+    background:#e3f2fd;
+}
+
+h1,h2{
+    text-align:center;
+}
+#searchInput{
+    width:300px;
+    padding:10px;
+    margin:20px;
+    border:1px solid #ccc;
+    border-radius:5px;
+}

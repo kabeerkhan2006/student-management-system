@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Add Student</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+
+<h1 class="college-title">
+    Government Polytechnic College Jhalawar
+</h1>
+
+<div class="form-box">
+
+<h2>Student Registration Form</h2>
+
+<form action="/add" method="POST">
+
+    <input type="text" name="name" placeholder="Enter Name" required>
+
+    <input type="text" name="semester" placeholder="Semester" required>
+
+    <input type="text" name="branch" placeholder="Branch" required>
+
+    <input type="email" name="email" placeholder="Email" required>
+
+    <input type="text" name="roll" placeholder="Roll Number" required>
+
+    <input type="text" name="mobile" placeholder="Mobile Number" required>
+
+    <button type="submit">Submit</button>
+
+</form>
+
+</div>
+
+</body>
+</html>
