@@ -135,20 +135,34 @@ def admin_login():
         username = request.form['username']
         password = request.form['password']
 
-        if username == "hod" and password == "hod123":
-            return redirect('/admin')
+        hods = {
+            "hod_cse": {"password": "cse123", "branch": "CSE"},
+            "hod_ma": {"password": "ma123", "branch": "MA"},
+            "hod_ee": {"password": "ee123", "branch": "EE"},
+            "hod_civil": {"password": "civil123", "branch": "CIVIL"},
+            "hod_ec": {"password": "ec123", "branch": "ELECTRONICS"},
+            "hod_chem": {"password": "chem123", "branch": "CHEMICAL"}
+}
 
-        return "Invalid Username or Password"
+    if username in hods and password == hods[username]["password"]:
+        branch = hods[username]["branch"]
+        return redirect(f"/admin/{branch}")
+
+    return "Invalid Username or Password"
+
+        
 
     return render_template('admin_login.html')
 
-@app.route('/admin')
-def admin():
-
+@app.route('/admin/<branch>')
+def admin(branch):
     conn = sqlite3.connect('students.db')
     c = conn.cursor()
 
-    c.execute("SELECT * FROM students")
+    c.execute(
+    "SELECT * FROM students WHERE branch=?",
+    (branch,)
+)
     students = c.fetchall()
 
     total_students = len(students)
@@ -158,8 +172,9 @@ def admin():
     return render_template(
         'admin_dashboard.html',
         students=students,
-        total_students=total_students
-    )
+        total_students=total_students,
+        branch=branch
+)
 @app.route('/export')
 def export_excel():
 
