@@ -142,18 +142,15 @@ def admin_login():
             "hod_civil": {"password": "civil123", "branch": "CIVIL"},
             "hod_ec": {"password": "ec123", "branch": "ELECTRONICS"},
             "hod_chem": {"password": "chem123", "branch": "CHEMICAL"}
-}
+        }
 
-    if username in hods and password == hods[username]["password"]:
-        branch = hods[username]["branch"]
-        return redirect(f"/admin/{branch}")
+        if username in hods and password == hods[username]["password"]:
+            branch = hods[username]["branch"]
+            return redirect(f"/admin/{branch}")
 
-    return "Invalid Username or Password"
-
-        
+        return "Invalid Username or Password"
 
     return render_template('admin_login.html')
-
 @app.route('/admin/<branch>')
 def admin(branch):
     conn = sqlite3.connect('students.db')
